@@ -19,19 +19,19 @@ export default function ContactPage() {
           {[
             {
               label: "이메일",
-              value: "example@email.com",
-              href: "mailto:example@email.com",
+              value: "gunwoo0828@naver.com",
+              href: "mailto:gunwoo0828@naver.com",
               icon: "✉️",
             },
             {
               label: "GitHub",
-              value: "github.com/username",
-              href: "https://github.com",
+              value: "github.com/gunwoo08281-star",
+              href: "https://github.com/gunwoo08281-star",
               icon: "🐙",
             },
             {
               label: "학교",
-              value: "○○대학교 컴퓨터공학과",
+              value: "중부대학교 정보보호학과",
               href: "#",
               icon: "🏫",
             },

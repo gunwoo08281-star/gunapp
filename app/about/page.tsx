@@ -35,9 +35,9 @@ export default function AboutPage() {
           <div className="flex flex-col gap-3">
             {[
               {
-                school: "○○대학교",
-                major: "컴퓨터공학과",
-                period: "2022.03 ~ 현재",
+                school: "중부대학교",
+                major: "정보보호학과",
+                period: "2023.03 ~ 현재",
               },
             ].map((item) => (
               <div
