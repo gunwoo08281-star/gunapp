@@ -10,6 +10,11 @@ export type Skill = {
   level: "상" | "중" | "하";
 };
 
+export type SkillGroup = {
+  category: string;
+  items: Skill[];
+};
+
 type SkillDocLike = {
   _id: unknown;
   category: string;
@@ -76,9 +81,7 @@ export async function getSkills(): Promise<Skill[]> {
 }
 
 // 카테고리별로 그룹핑해서 반환
-export async function getSkillsByCategory(): Promise<
-  { category: string; items: Skill[] }[]
-> {
+export async function getSkillsByCategory(): Promise<SkillGroup[]> {
   const skills = await getSkills();
 
   const grouped = skills.reduce<Record<string, Skill[]>>((acc, skill) => {
