@@ -1,6 +1,8 @@
 import { ProjectModel } from "@/models/Project";
 import { connectDB } from "./mongodb";
 
+const githubProfile = "https://github.com/gunwoo08281-star";
+
 export type Project = {
   id: string;
   title: string;
@@ -25,7 +27,7 @@ const initialProjects = [
     description:
       "Next.js App Router 기반의 풀스택 웹 애플리케이션. 공지사항 CRUD, 상품 목록, 인증 기능 포함.",
     tech: ["Next.js", "TypeScript", "MongoDB", "Tailwind CSS"],
-    github: "#",
+    github: githubProfile,
     demo: "#",
     order: 1,
   },
@@ -34,18 +36,9 @@ const initialProjects = [
     description:
       "웹 중간고사 과제로 제작한 개인 포트폴리오. 자기소개, 기술 스택, 프로젝트 페이지 구성.",
     tech: ["Next.js", "React", "Tailwind CSS"],
-    github: "#",
+    github: githubProfile,
     demo: "#",
     order: 2,
-  },
-  {
-    title: "보안 취약점 분석 보고서",
-    description:
-      "XSS, CSRF, SQL Injection 등 주요 웹 취약점을 분석하고 대응 방안을 정리한 문서 프로젝트.",
-    tech: ["보안분석", "OWASP", "보고서"],
-    github: "#",
-    demo: "#",
-    order: 3,
   },
 ];
 
@@ -67,6 +60,8 @@ async function seedIfEmpty() {
 
 export async function getProjects(): Promise<Project[]> {
   await connectDB();
+  await ProjectModel.deleteOne({ title: "보안 취약점 분석 보고서" });
+  await ProjectModel.updateMany({}, { $set: { github: githubProfile } });
   await seedIfEmpty();
 
   const docs = await ProjectModel.find().sort({ order: 1, createdAt: 1 }).lean();

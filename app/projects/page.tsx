@@ -35,7 +35,17 @@ export default function ProjectsPage() {
 
 async function ProjectList() {
   await connection();
-  const projects = await getProjects();
+  let projects;
+  try {
+    projects = await getProjects();
+  } catch (error) {
+    console.error("[projects] DB 오류:", error);
+    return (
+      <p className="text-sm text-red-600">
+        데이터를 불러오지 못했습니다. (MONGODB_URI 환경변수와 MongoDB Atlas Network Access 설정을 확인하세요)
+      </p>
+    );
+  }
 
   return (
     <ul className="flex flex-col gap-4">

@@ -42,6 +42,15 @@ export default function SkillsPage() {
 
 async function SkillGroups() {
   await connection();
-  const skillGroups = await getSkillsByCategory();
-  return <SkillGroupList groups={skillGroups} />;
+  try {
+    const skillGroups = await getSkillsByCategory();
+    return <SkillGroupList groups={skillGroups} />;
+  } catch (error) {
+    console.error("[skills] DB 오류:", error);
+    return (
+      <p className="text-sm text-red-600">
+        데이터를 불러오지 못했습니다. (MONGODB_URI 환경변수와 MongoDB Atlas Network Access 설정을 확인하세요)
+      </p>
+    );
+  }
 }
