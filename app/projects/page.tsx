@@ -79,12 +79,16 @@ async function ProjectList() {
               >
                 GitHub →
               </a>
-              <a
-                href={p.demo}
-                className="font-medium text-zinc-500 underline underline-offset-4 dark:text-zinc-400"
-              >
-                Demo →
-              </a>
+              {p.demo !== "#" && (
+                <a
+                  href={p.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-zinc-500 underline underline-offset-4 dark:text-zinc-400"
+                >
+                  Demo →
+                </a>
+              )}
             </div>
           </div>
         </li>

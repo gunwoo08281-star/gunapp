@@ -1,8 +1,12 @@
+import { Suspense } from "react";
 import Link from "next/link";
+import { connection } from "next/server";
+import { auth } from "@/auth";
+import { logout } from "@/app/skills/auth-actions";
 
 export function SiteHeader() {
   return (
-    <header className="border-b border-black/[.08] dark:border-white/[.145]">
+    <header className="border-b border-black/8 dark:border-white/[.145]">
       <div className="mx-auto flex max-w-3xl items-center justify-between px-8 py-4">
         <Link href="/" className="text-sm font-semibold text-black dark:text-zinc-50">
           곽건우 포트폴리오
@@ -17,14 +21,36 @@ export function SiteHeader() {
           <Link href="/projects" className="hover:text-black dark:hover:text-zinc-50">
             프로젝트
           </Link>
-          <Link
-            href="/contact"
-            className="rounded-md border border-black/[.08] px-3 py-1.5 hover:bg-black/[.03] dark:border-white/[.145] dark:hover:bg-white/[.05]"
-          >
-            연락처
+          <Link href="/study" className="hover:text-black dark:hover:text-zinc-50">
+            학습
           </Link>
+          <Link href="/contact" className="hover:text-black dark:hover:text-zinc-50">
+            정보
+          </Link>
+          <Suspense fallback={null}>
+            <AuthLink />
+          </Suspense>
         </nav>
       </div>
     </header>
+  );
+}
+
+async function AuthLink() {
+  await connection();
+  const session = await auth();
+  if (!session?.user) {
+    return (
+      <Link href="/login" className="rounded-md border border-black/8 px-3 py-1.5 hover:bg-black/3 dark:border-white/[.145] dark:hover:bg-white/5">
+        로그인
+      </Link>
+    );
+  }
+  return (
+    <form action={logout}>
+      <button type="submit" className="rounded-md border border-black/8 px-3 py-1.5 hover:bg-black/3 dark:border-white/[.145] dark:hover:bg-white/5">
+        로그아웃
+      </button>
+    </form>
   );
 }

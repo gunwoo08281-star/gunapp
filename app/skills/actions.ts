@@ -4,6 +4,7 @@ import { revalidatePath } from 'next/cache'
 import { Types } from 'mongoose'
 import { Skill as SkillModel } from '@/models/Skill'
 import { connectDB } from '@/lib/mongodb'
+import { requireAdmin } from '@/lib/admin'
 
 const allowedLevels = new Set(['상', '중', '하'])
 
@@ -15,6 +16,7 @@ function readText(formData: FormData, key: string, maxLength: number) {
 }
 
 export async function addSkill(formData: FormData) {
+  await requireAdmin()
   const category = readText(formData, 'category', 40)
   const name = readText(formData, 'name', 80)
   const level = readText(formData, 'level', 1)
@@ -30,6 +32,7 @@ export async function addSkill(formData: FormData) {
 }
 
 export async function deleteSkill(formData: FormData) {
+  await requireAdmin()
   const id = formData.get('id')
   if (typeof id !== 'string' || !Types.ObjectId.isValid(id)) {
     throw new Error('삭제할 기술 항목을 확인할 수 없습니다.')

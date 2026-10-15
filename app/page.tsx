@@ -17,7 +17,7 @@ export default function Home() {
             곽건우입니다
           </h1>
           <p className="max-w-md text-base leading-7 text-zinc-600 dark:text-zinc-400">
-            웹 보안과 풀스택 개발에 관심 있는 대학생입니다.
+            중부대학교 2학년 재학중인 곽건우 입니다.
             <br />
             Next.js · React · TypeScript를 공부하고 있습니다.
           </p>
@@ -45,13 +45,13 @@ export default function Home() {
             href="/skills"
             className="font-medium text-zinc-950 underline underline-offset-4 dark:text-zinc-50"
           >
-            /skills — 보유 기술 스택 확인 →
+            보유 기술 스택 확인 →
           </Link>
           <Link
             href="/contact"
             className="font-medium text-zinc-950 underline underline-offset-4 dark:text-zinc-50"
           >
-            /contact — 연락처 정보 →
+            정보 →
           </Link>
         </div>
       </main>

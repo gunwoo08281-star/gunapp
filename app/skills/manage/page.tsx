@@ -1,11 +1,26 @@
 import { Suspense } from "react";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { connection } from "next/server";
+import { auth } from "@/auth";
+import { isAdminEmail } from "@/lib/admin";
 import { getSkillsByCategory } from "@/lib/skills";
 import { addSkill, deleteSkill } from "../actions";
 import { SkillGroupList } from "@/components/SkillGroupList";
 
 export default function ManageSkillsPage() {
+  return (
+    <Suspense fallback={<p className="p-8">확인 중...</p>}>
+      <ManageSkillsContent />
+    </Suspense>
+  );
+}
+
+async function ManageSkillsContent() {
+  await connection();
+  const session = await auth();
+  if (!isAdminEmail(session?.user?.email)) redirect("/login");
+
   return (
     <div className="flex flex-1 flex-col items-center px-8 py-16">
       <div className="w-full max-w-3xl flex flex-col gap-8">

@@ -10,7 +10,7 @@ export default function ContactPage() {
             Contact
           </span>
           <h1 className="text-3xl font-semibold text-black dark:text-zinc-50">
-            연락처
+            정보
           </h1>
         </div>
 
