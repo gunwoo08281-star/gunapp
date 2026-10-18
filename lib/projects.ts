@@ -8,6 +8,13 @@ export type Project = {
   tech: string[];
   github: string;
   demo: string;
+  role: string;
+  features: string[];
+  challenge: string;
+  part: string;
+  contribution: string;
+  result: string;
+  image: string;
 };
 
 type ProjectDocLike = {
@@ -17,34 +24,71 @@ type ProjectDocLike = {
   tech: string[];
   github: string;
   demo: string;
+  role?: string;
+  features?: string[];
+  challenge?: string;
+  part?: string;
+  contribution?: string;
+  result?: string;
+  image?: string;
 };
 
 const initialProjects = [
   {
     title: "Museum of Cryptography",
-    description:
-      "중부대 팀 프로젝트로 만든 가상 암호학 박물관. 고대(스키테일, 카이사르), 근대(에니그마), 현대(양자암호, 블록체인) 전시관으로 암호의 역사를 소개합니다.",
+    description: "암호의 역사를 시대별 전시관으로 둘러보는 가상 암호학 박물관 웹사이트입니다.",
+    part: "HTML과 CSS로 사이트 레이아웃을 구성하고, 전체 색상과 레이아웃 디자인을 담당했습니다.",
     tech: ["HTML", "CSS", "JavaScript", "Vercel"],
     github: "https://github.com/gunwoo08281-star/web-peam-project",
     demo: "https://web-peam-project.vercel.app",
+    role: "팀 프로젝트 참여",
+    features: [
+      "고대·근대·현대 3개 전시관으로 암호의 역사를 시대순으로 구성",
+      "스키테일, 카이사르, 에니그마, 양자암호, 블록체인 소개",
+      "Vercel로 배포",
+    ],
+    challenge: "",
+    contribution: "",
+    result: "HTML, CSS, JavaScript를 처음 배우면서 팀원들과 함께 만든 첫 웹 프로젝트입니다. 서툴렀지만 레이아웃을 직접 구성하고 팀원들과 협업하며 웹이 만들어지는 과정을 이해할 수 있었습니다.",
+    image: "",
     order: 1,
   },
   {
     title: "스마트 디지털 냉장고",
-    description:
-      "팀장 겸 프론트엔드 개발로 참여한 팀 프로젝트. 집 안 식품과 유통기한을 관리하고, 실시간 추가/삭제와 상태 표시, 반응형 그리드, 입력 폼 검증을 구현했습니다.",
+    description: "집 안 식품과 유통기한을 관리하는 스마트 디지털 냉장고 웹 앱입니다.",
     tech: ["HTML5", "CSS3", "JavaScript", "GitHub"],
     github: "https://github.com/gunwoo08281-star/refrigerator",
     demo: "#",
+    role: "팀 프로젝트 참여",
+    features: [
+      "식품 실시간 추가/삭제와 유통기한 상태 표시",
+      "반응형 그리드 레이아웃",
+      "입력 폼 검증",
+    ],
+    challenge: "",
+    part: "집 안 식품과 유통기한을 관리하는 팀 프로젝트로, 식품 추가/삭제와 상태 표시, 반응형 그리드, 입력 폼 검증 기능을 갖추고 있습니다.",
+    contribution: "HTML과 CSS로 사이트 레이아웃을 구성하고, 전체 색상과 레이아웃 디자인을 담당했습니다.",
+    result: "HTML, CSS, JavaScript를 배운 뒤 팀원들과 함께 만든 두 번째 웹 프로젝트입니다. 아직 서툴렀지만 화면 구성부터 입력 처리까지 직접 해 보며 웹의 동작 원리를 조금 더 이해하게 되었습니다.",
+    image: "",
     order: 2,
   },
   {
     title: "웹서버보안프로그래밍 학습 사이트 (my-app)",
-    description:
-      "웹서버보안프로그래밍 수업 내용을 따라 만든 풀스택 사이트. 공지사항 게시판(MongoDB 연동), 상품 목록과 좋아요(서버 액션), 이메일/비밀번호 로그인(Auth.js + bcrypt)을 구현했습니다.",
+    description: "웹서버보안프로그래밍 수업 내용을 따라 만든 풀스택 학습 사이트입니다.",
     tech: ["Next.js", "TypeScript", "MongoDB", "Auth.js", "Tailwind CSS"],
     github: "https://github.com/gunwoo08281-star/my-app",
     demo: "https://my-app-rouge-eight-47.vercel.app",
+    role: "개인 프로젝트 (설계 · 개발 · 배포)",
+    features: [
+      "MongoDB 연동 공지사항 게시판",
+      "서버 액션 기반 상품 좋아요",
+      "Auth.js + bcrypt 이메일/비밀번호 로그인",
+    ],
+    challenge: "",
+    part: "",
+    contribution: "",
+    result: "서버와 데이터베이스, 로그인 기능을 처음 배워 보며 직접 만든 사이트입니다. 글을 저장하면 DB에 남고 로그인한 사람만 쓸 수 있다는 점이 신기했고, 비밀번호를 그대로 저장하지 않고 암호화한다는 걸 알게 되어 보안이 왜 중요한지 느꼈습니다.",
+    image: "",
     order: 3,
   },
 ];
@@ -57,6 +101,13 @@ function toProject(doc: ProjectDocLike): Project {
     tech: doc.tech,
     github: doc.github,
     demo: doc.demo,
+    role: doc.role ?? "",
+    features: doc.features ?? [],
+    challenge: doc.challenge ?? "",
+    part: doc.part ?? "",
+    contribution: doc.contribution ?? "",
+    result: doc.result ?? "",
+    image: doc.image ?? "",
   };
 }
 
