@@ -19,7 +19,25 @@ export default function ManageSkillsPage() {
 async function ManageSkillsContent() {
   await connection();
   const session = await auth();
-  if (!isAdminEmail(session?.user?.email)) redirect("/login");
+  if (!session?.user) redirect("/login");
+  if (!isAdminEmail(session.user.email)) {
+    return (
+      <div className="flex flex-1 flex-col items-center gap-4 px-8 py-16">
+        <h1 className="text-2xl font-semibold text-black dark:text-zinc-50">
+          권한이 없습니다
+        </h1>
+        <p className="text-sm text-zinc-500 dark:text-zinc-400">
+          {session.user.email} 계정은 기술 목록을 수정할 수 없습니다. 관리자 계정으로 로그인해주세요.
+        </p>
+        <Link
+          href="/skills"
+          className="text-sm font-medium underline underline-offset-4"
+        >
+          ← 기술 목록으로 돌아가기
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-1 flex-col items-center px-8 py-16">
